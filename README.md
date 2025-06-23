@@ -7,35 +7,31 @@
 
 ## 🧹 Data Cleaning Performed:
 
-1. **Removed Duplicates**
-   - Duplicate rows were dropped using `df.drop_duplicates()`.
+### 1. ✅ Handled Missing Values
+- Used forward fill (ffill) to fill any missing entries.
 
-2. **Handled Missing Values**
-   - Forward filled missing values using `df.ffill()`.
+### 2. ✅ Removed Duplicate Records
+- Duplicate rows were removed using drop_duplicates().
 
-3. **Standardized Text Columns**
-   - Converted `Gender` and `No-show` columns to lowercase and stripped spaces for uniformity.
+### 3. ✅ Standardized Text Data
+- Converted text values in the Gender and No-show columns to lowercase and stripped any whitespace for consistency.
 
-4. **Converted Date Columns**
-   - `ScheduledDay` and `AppointmentDay` converted to `datetime` format.
-   - Timezone removed from `ScheduledDay` using `.dt.tz_localize(None)`.
-   - Time portion removed from `AppointmentDay` using `.dt.date`.
+### 4. ✅ Date Conversion
+- ScheduledDay converted to datetime and timezone info (+00:00) was removed using .dt.tz_localize(None).
+- AppointmentDay was also converted to datetime, and the time portion was removed using .dt.date.
 
-5. **Cleaned Column Headers**
-   - Renamed all columns to lowercase with underscores using:
-     ```python
-     df.columns = df.columns.str.lower().str.replace(" ", "_")
-     ```
+### 5. ✅ Column Name Formatting
+- Renamed all column headers to lowercase with underscores (e.g., "AppointmentID" → "appointmentid").
 
-6. **Fixed Data Types**
-   - `age`, `patientid`, and `appointmentid` converted to appropriate `int64` or `str` formats as needed.
-   - Large integers like `patientid` and `appointmentid` were formatted to remove scientific notation.
+### 6. ✅ Fixed Data Types
+- Converted age to integer using astype(int) after handling missing or non-numeric entries.
+- Converted patientid and appointmentid to int64 to remove scientific notation and ensure numeric sorting.
 
-7. **Sorted Data**
-   - Final dataset was sorted first by `appointment_day`, then by `appointment_id` using:
-     ```python
-     df.sort_values(by=['appointment_day', 'appointment_id'], ascending=[True, True])
-     ```
+### 7. ✅ Sorted the Dataset
+- Sorted by appointmentday (earliest date first), then by appointmentid (lowest ID first).
+
+### 8. ✅ Saved the Cleaned Dataset
+- Cleaned dataset was saved as KaggleV2-May-2016.csv.csv (note: possibly rename this for clarity).
 
 ---
 
@@ -46,10 +42,11 @@
 
 ---
 
-## 📁 Files Included:
-- `medical-appointment-no-shows.ipynb` → Full notebook with data cleaning steps.
-- `cleaned_dataset.csv` → Final cleaned version of the dataset.
-- `README.md` → This summary of the task.
+## 📁 Files in the Repository:
+- data_cleaning.py: Python script containing the full cleaning logic.
+- KaggleV2-May-2016.csv: Original dataset.
+-  Cleaned dataset renamed to (cleaned_medical_appointments)
+- README.md: Documentation of cleaning steps performed.
 
 ---
 
